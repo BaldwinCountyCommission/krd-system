@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMA Disaster Guest Laptop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d2240;
+    --navy-mid: #1a3a6b;
+    --blue: #1d5fa8;
+    --blue-light: #2574cc;
+    --gold: #c9a227;
+    --gold-light: #f0c040;
+    --surface: #f0f4f8;
+    --surface-card: #ffffff;
+    --text-primary: #0d2240;
+    --text-muted: #4a6080;
+    --border: rgba(13,34,64,0.12);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'Barlow', sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 32px 24px 24px;
+  }
+
+  /* === Header === */
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+
+  .header-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .header-text .subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .gold-rule {
+    width: 100%;
+    max-width: 700px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* Clock */
+  .clock-bar {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .clock-bar #clock-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 2px;
+  }
+
+  /* === Grid === */
+  .kiosk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .kiosk-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-card);
+    color: var(--navy);
+    text-decoration: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 32px 16px;
+    height: 160px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    border-top: 3px solid var(--blue);
+    box-shadow: 0 2px 8px rgba(13,34,64,0.07);
+    transition: border-top-color 0.15s, background 0.15s, transform 0.12s, box-shadow 0.12s;
+    cursor: pointer;
+  }
+
+  .kiosk-button .btn-icon {
+    font-size: 2rem;
+    color: var(--blue);
+    transition: color 0.15s;
+    line-height: 1;
+  }
+
+  .kiosk-button .btn-label {
+    line-height: 1.15;
+  }
+
+  .kiosk-button:hover {
+    border-top-color: var(--gold);
+    background: var(--navy);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13,34,64,0.18);
+  }
+
+  .kiosk-button:hover .btn-icon { color: var(--gold-light); }
+
+  .kiosk-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 4px rgba(13,34,64,0.1);
+  }
+
+  .kiosk-button:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* === Footer === */
+  footer {
+    margin-top: auto;
+    padding-top: 32px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+
+  footer strong { color: var(--navy); }
+
+  .session-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .session-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* === Screensaver === */
+  #screensaver {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--navy);
+    z-index: 9999;
+    overflow: hidden;
+    cursor: none;
+  }
+
+  .ss-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(29,95,168,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(29,95,168,0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  #screensaver-logo {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    will-change: transform;
+    filter: drop-shadow(0 0 30px rgba(201,162,39,0.4));
+  }
+
+  .ss-text {
+    position: fixed;
+    bottom: 32px;
+    left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.25);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  .ss-clock {
+    position: fixed;
+    top: 32px;
+    right: 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 3px;
+  }
+
+  @media (max-width: 800px) {
+    .kiosk-grid { grid-template-columns: repeat(2, 1fr); }
+    .header-text h1 { font-size: 1.8rem; }
+    .logo { width: 70px; height: 70px; }
+  }
+
+  @media (max-width: 520px) {
+    .kiosk-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="header">
+    <div class="header-top">
+      <img src="https://res.cloudinary.com/baldwincounty/image/upload/e_background_removal/f_png/v1772478822/BCCEMA_yvdxp5.jpg" alt="Baldwin County EMA Logo" class="logo">
+      <div class="header-text">
+        <h1>EMA Disaster Guest Laptop</h1>
+        <div class="subtitle">Baldwin County Emergency Management Agency</div>
+      </div>
+    </div>
+    <div class="gold-rule"></div>
+    <div class="clock-bar">
+      <span>Session Active</span>
+      <span id="clock-time">--:--:-- --</span>
+      <span id="clock-date" style="color:var(--text-muted)"></span>
+    </div>
+  </header>
+
+  <main class="kiosk-grid">
+    <a href="https://www.office.com" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">📁</span>
+      <span class="btn-label">Microsoft Office</span>
+    </a>
+    <a href="#" class="kiosk-button">
+      <span class="btn-icon">🔗</span>
+      <span class="btn-label">Link</span>
+    </a>
+    <a href="#" class="kiosk-button">
+      <span class="btn-icon">🔗</span>
+      <span class="btn-label">Link</span>
+    </a>
+    <a href="#" class="kiosk-button">
+      <span class="btn-icon">🔗</span>
+      <span class="btn-label">Link</span>
+    </a>
+    <a href="#" class="kiosk-button">
+      <span class="btn-icon">🔗</span>
+      <span class="btn-label">Link</span>
+    </a>
+    <a href="#" class="kiosk-button">
+      <span class="btn-icon">🔗</span>
+      <span class="btn-label">Link</span>
+    </a>
+  </main>
+
+  <footer>
+    <p><strong>Security Notice:</strong> This kiosk will display a screensaver after 60 minutes of inactivity. All sessions will be logged out automatically to protect user data.</p>
+    <div class="session-indicator">
+      <div class="session-dot"></div>
+      <span>Kiosk active — touch anywhere to reset the session timer</span>
+    </div>
+  </footer>
+</div>
+
+<div id="screensaver" role="presentation" aria-hidden="true">
+  <div class="ss-grid"></div>
+  <img id="screensaver-logo"
+    src="https://res.cloudinary.com/baldwincounty/image/upload/e_background_removal/f_png/v1772478822/BCCEMA_yvdxp5.jpg"
+    alt="">
+  <div class="ss-clock" id="ss-clock"></div>
+  <div class="ss-text">Touch anywhere to continue</div>
+</div>
+
+<script>
+  // === Clock ===
+  function updateClock() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    const el = document.getElementById('clock-time');
+    const de = document.getElementById('clock-date');
+    const sc = document.getElementById('ss-clock');
+    if (el) el.textContent = timeStr;
+    if (de) de.textContent = dateStr;
+    if (sc) sc.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // === Screensaver ===
+  const TIMEOUT_MS = 60 * 60 * 1000; // 60 minutes
+  const screensaver = document.getElementById('screensaver');
+  const logo = document.getElementById('screensaver-logo');
+
+  let x = 0, y = 0, dx = 2.5, dy = 2.5, animId, timer;
+
+  function startScreensaver() {
+    screensaver.style.display = 'block';
+    x = Math.random() * Math.max(0, window.innerWidth - logo.clientWidth);
+    y = Math.random() * Math.max(0, window.innerHeight - logo.clientHeight);
+    animate();
+  }
+
+  function stopScreensaver() {
+    screensaver.style.display = 'none';
+    cancelAnimationFrame(animId);
+  }
+
+  function resetTimer() {
+    clearTimeout(timer);
+    if (screensaver.style.display === 'block') stopScreensaver();
+    timer = setTimeout(startScreensaver, TIMEOUT_MS);
+  }
+
+  function animate() {
+    const w = logo.clientWidth, h = logo.clientHeight;
+    const vw = window.innerWidth, vh = window.innerHeight;
+    if (x + w >= vw || x <= 0) { dx = -dx; x = Math.max(0, Math.min(x, vw - w)); }
+    if (y + h >= vh || y <= 0) { dy = -dy; y = Math.max(0, Math.min(y, vh - h)); }
+    x += dx; y += dy;
+    logo.style.transform = `translate(${x}px, ${y}px)`;
+    animId = requestAnimationFrame(animate);
+  }
+
+  ['mousemove', 'mousedown', 'keydown', 'touchstart', 'click', 'scroll'].forEach(ev => {
+    document.addEventListener(ev, resetTimer, { passive: true, capture: true });
+  });
+
+  // Dismiss screensaver on tap/click
+  screensaver.addEventListener('click', resetTimer);
+  screensaver.addEventListener('touchstart', resetTimer, { passive: true });
+
+  resetTimer();
+</script>
+</body>
+</html>

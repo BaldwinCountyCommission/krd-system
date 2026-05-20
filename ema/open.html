@@ -421,8 +421,8 @@
       <span class="btn-icon">🗂️</span>
       <span class="btn-label">File Explorer</span>
     </a>
-    <!-- Logout: place logout.bat (containing: shutdown /l) in the same folder as this HTML file -->
-    <a href="logout.bat" class="kiosk-button danger">
+    <!-- Logout: uses kiosklogout:// custom protocol, registered via setup_kiosk_protocols.ps1 -->
+    <a href="kiosklogout://" class="kiosk-button danger">
       <span class="btn-icon">🔒</span>
       <span class="btn-label">Log Out</span>
     </a>
@@ -437,6 +437,7 @@
   </footer>
 </div>
 
+<!-- Reset: uses kioskreset:// custom protocol, registered via setup_kiosk_protocols.ps1 -->
 <!-- Reset Session Confirmation Modal -->
 <div class="modal-overlay" id="resetModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
@@ -541,7 +542,7 @@
     // Trigger OS-level kiosk reset via companion bat file, then reload this page
     // reset.bat must be in the same folder as this HTML file, containing:
     //   rundll32.exe user32.dll,LockWorkStation
-    window.location.href = 'reset.bat';
+    window.location.href = 'kioskreset://';
 
     // Reload this page after a short delay as fallback
     setTimeout(() => { window.location.reload(); }, 1000);

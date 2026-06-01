@@ -171,6 +171,108 @@
     outline-offset: 3px;
   }
 
+  /* === About Modal === */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,34,64,0.75);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--surface-card);
+    border-radius: 14px;
+    border-top: 4px solid var(--blue);
+    padding: 40px 44px;
+    max-width: 560px;
+    width: 92%;
+    box-shadow: 0 24px 64px rgba(13,34,64,0.35);
+    position: relative;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .modal-header-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .modal h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+
+  .modal-divider {
+    width: 100%;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 20px;
+  }
+
+  .modal-body {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .modal-body p { margin-bottom: 14px; }
+  .modal-body p:last-child { margin-bottom: 0; }
+
+  .modal-body strong { color: var(--navy); }
+
+  .modal-tip {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #f0f4f8;
+    border-left: 3px solid var(--blue);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .modal-tip-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  .modal-close {
+    display: block;
+    margin: 28px auto 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 13px 36px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: var(--navy);
+    color: #ffffff;
+    transition: background 0.15s, transform 0.12s;
+  }
+
+  .modal-close:hover { background: var(--blue); }
+  .modal-close:active { transform: scale(0.97); }
+
   /* === Footer === */
   footer {
     margin-top: auto;
@@ -316,6 +418,10 @@
       <span class="btn-icon">⛅</span>
       <span class="btn-label">Weather.gov</span>
     </a>
+    <button class="kiosk-button" onclick="showAboutModal()">
+      <span class="btn-icon">ℹ️</span>
+      <span class="btn-label">About This Kiosk</span>
+    </button>
   </main>
 
   <footer>
@@ -325,6 +431,31 @@
       <span>Kiosk active — touch anywhere to reset the session timer</span>
     </div>
   </footer>
+</div>
+
+<!-- About This Kiosk Modal -->
+<div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-header-icon">ℹ️</span>
+      <h2 id="aboutModalTitle">About This Kiosk</h2>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-body">
+      <p>This is a <strong>shared disaster guest laptop</strong> managed by the Baldwin County Emergency Management Agency. It is configured as a restricted kiosk and <strong>does not have access to locally installed productivity applications</strong> such as Microsoft Word, Excel, or other desktop software.</p>
+      <p>To create or edit documents, spreadsheets, and presentations, please use a <strong>web-based application</strong>:</p>
+      <p>
+        &bull; <strong>Microsoft Office Online</strong> — visit <em>office.com</em> and sign in with your Microsoft or organizational account to access Word, Excel, PowerPoint, and OneDrive.<br><br>
+        &bull; <strong>Google Workspace</strong> — visit <em>drive.google.com</em> and sign in with your Google account to access Docs, Sheets, Slides, and Drive storage.
+      </p>
+      <p>Use whichever platform your organization supports. Files saved to OneDrive or Google Drive will remain accessible from your own devices after this session ends.</p>
+      <div class="modal-tip">
+        <span class="modal-tip-icon">🔒</span>
+        <span>When you are finished, use the <strong>End Session</strong> button on the main screen to immediately log out of all accounts, clear browsing history and cookies, and return this machine to a clean state for the next user.</span>
+      </div>
+    </div>
+    <button class="modal-close" onclick="hideAboutModal()">Got It</button>
+  </div>
 </div>
 
 <div id="screensaver" role="presentation" aria-hidden="true">
@@ -395,6 +526,20 @@
   screensaver.addEventListener('touchstart', resetTimer, { passive: true });
 
   resetTimer();
+
+  // === About Modal ===
+  function showAboutModal() {
+    document.getElementById('aboutModal').classList.add('active');
+  }
+
+  function hideAboutModal() {
+    document.getElementById('aboutModal').classList.remove('active');
+  }
+
+  document.getElementById('aboutModal').addEventListener('click', function(e) {
+    if (e.target === this) hideAboutModal();
+  });
+
 </script>
 </body>
 </html>

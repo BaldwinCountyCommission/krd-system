@@ -147,6 +147,18 @@
     line-height: 1;
   }
 
+
+  .kiosk-button .btn-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: filter 0.15s;
+  }
+
+  .kiosk-button:hover .btn-img {
+    filter: brightness(1.15);
+  }
   .kiosk-button .btn-label {
     line-height: 1.15;
   }
@@ -395,27 +407,27 @@
       <span class="btn-label">Microsoft Office</span>
     </a>
     <a href="https://baldwincountyal.gov/departments/emergency-management-agency/" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🏛️</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780327225/469163439_978598450971233_7443490648952158693_n_yarnac.jpg" alt="Baldwin County EMA">
       <span class="btn-label">Baldwin County EMA</span>
     </a>
     <a href="https://google.com" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🔍</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780326966/google_msiolu.webp" alt="Google">
       <span class="btn-label">Google</span>
     </a>
     <a href="https://ema.alabama.gov/" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🚨</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780326981/EMA-SEAL_ckcnu2.png" alt="Alabama EMA">
       <span class="btn-label">Alabama EMA</span>
     </a>
     <a href="https://noaa.gov/" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🌊</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780326994/NOAA_logo.svg_mgah1s.png" alt="NOAA">
       <span class="btn-label">NOAA</span>
     </a>
     <a href="https://fema.gov" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🇺🇸</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780327031/FEMA_logo.svg_tpeia8.png" alt="FEMA">
       <span class="btn-label">FEMA</span>
     </a>
     <a href="https://weather.gov" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">⛅</span>
+      <img class="btn-icon btn-img" src="https://res.cloudinary.com/baldwincounty/image/upload/v1780327080/NationalWeatherService-Logo_w3jzn4.png" alt="Weather.gov">
       <span class="btn-label">Weather.gov</span>
     </a>
     <button class="kiosk-button" onclick="showAboutModal()">

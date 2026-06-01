@@ -171,111 +171,6 @@
     outline-offset: 3px;
   }
 
-  .kiosk-button.danger {
-    border-top-color: #b91c1c;
-  }
-
-  .kiosk-button.danger .btn-icon { color: #b91c1c; }
-
-  .kiosk-button.danger:hover {
-    background: #7f1d1d;
-    border-top-color: #ef4444;
-    color: #ffffff;
-  }
-
-  .kiosk-button.danger:hover .btn-icon { color: #fca5a5; }
-
-  .kiosk-button.warning {
-    border-top-color: #b45309;
-  }
-
-  .kiosk-button.warning .btn-icon { color: #b45309; }
-
-  .kiosk-button.warning:hover {
-    background: #78350f;
-    border-top-color: #f59e0b;
-    color: #ffffff;
-  }
-
-  .kiosk-button.warning:hover .btn-icon { color: #fcd34d; }
-
-  /* === Confirm Modal === */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(13,34,64,0.7);
-    z-index: 10000;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-overlay.active { display: flex; }
-
-  .modal {
-    background: var(--surface-card);
-    border-radius: 14px;
-    border-top: 4px solid #b45309;
-    padding: 36px 40px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(13,34,64,0.3);
-  }
-
-  .modal h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-  }
-
-  .modal p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 28px;
-  }
-
-  .modal-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-  }
-
-  .modal-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 14px 28px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.15s, transform 0.12s;
-  }
-
-  .modal-btn:active { transform: scale(0.97); }
-
-  .modal-btn.confirm {
-    background: #b45309;
-    color: #ffffff;
-  }
-
-  .modal-btn.confirm:hover { background: #92400e; }
-
-  .modal-btn.cancel {
-    background: var(--surface);
-    color: var(--navy);
-    border: 1.5px solid var(--border);
-  }
-
-  .modal-btn.cancel:hover { background: #dde4ec; }
-
   /* === Footer === */
   footer {
     margin-top: auto;
@@ -397,57 +292,39 @@
       <span class="btn-icon">📁</span>
       <span class="btn-label">Microsoft Office</span>
     </a>
-    <a href="#" class="kiosk-button">
-      <span class="btn-icon">🔗</span>
-      <span class="btn-label">Link</span>
+    <a href="https://baldwincountyal.gov/departments/emergency-management-agency/" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">🏛️</span>
+      <span class="btn-label">Baldwin County EMA</span>
     </a>
-    <a href="#" class="kiosk-button">
-      <span class="btn-icon">🔗</span>
-      <span class="btn-label">Link</span>
+    <a href="https://google.com" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">🔍</span>
+      <span class="btn-label">Google</span>
     </a>
-    <a href="#" class="kiosk-button">
-      <span class="btn-icon">🔗</span>
-      <span class="btn-label">Link</span>
+    <a href="https://ema.alabama.gov/" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">🚨</span>
+      <span class="btn-label">Alabama EMA</span>
     </a>
-    <a href="#" class="kiosk-button">
-      <span class="btn-icon">🔗</span>
-      <span class="btn-label">Link</span>
+    <a href="https://noaa.gov/" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">🌊</span>
+      <span class="btn-label">NOAA</span>
     </a>
-    <button class="kiosk-button warning" onclick="showResetModal()">
-      <span class="btn-icon">🔄</span>
-      <span class="btn-label">Reset Session</span>
-    </button>
-    <a href="file:///C:/" class="kiosk-button" target="_blank" rel="noopener">
-      <span class="btn-icon">🗂️</span>
-      <span class="btn-label">File Explorer</span>
+    <a href="https://fema.gov" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">🇺🇸</span>
+      <span class="btn-label">FEMA</span>
     </a>
-    <!-- Logout: uses kiosklogout:// custom protocol, registered via setup_kiosk_protocols.ps1 -->
-    <a href="kiosklogout://" class="kiosk-button danger">
-      <span class="btn-icon">🔒</span>
-      <span class="btn-label">Log Out</span>
+    <a href="https://weather.gov" class="kiosk-button" target="_blank" rel="noopener">
+      <span class="btn-icon">⛅</span>
+      <span class="btn-label">Weather.gov</span>
     </a>
   </main>
 
   <footer>
-    <p><strong>Security Notice:</strong> This kiosk will display a screensaver after 60 minutes of inactivity. All sessions will be logged out automatically to protect user data.</p>
+    <p><strong>Security Notice:</strong> This kiosk will display a screensaver after 24 hours of inactivity. All sessions will be logged out automatically to protect user data.</p>
     <div class="session-indicator">
       <div class="session-dot"></div>
       <span>Kiosk active — touch anywhere to reset the session timer</span>
     </div>
   </footer>
-</div>
-
-<!-- Reset: uses kioskreset:// custom protocol, registered via setup_kiosk_protocols.ps1 -->
-<!-- Reset Session Confirmation Modal -->
-<div class="modal-overlay" id="resetModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <h2 id="modalTitle">Reset Session?</h2>
-    <p>This will immediately clear all browser data, close open tabs, and lock the workstation — returning it to a clean state for the next user.</p>
-    <div class="modal-actions">
-      <button class="modal-btn cancel" onclick="hideResetModal()">Cancel</button>
-      <button class="modal-btn confirm" onclick="confirmReset()">Reset Now</button>
-    </div>
-  </div>
 </div>
 
 <div id="screensaver" role="presentation" aria-hidden="true">
@@ -476,7 +353,7 @@
   setInterval(updateClock, 1000);
 
   // === Screensaver ===
-  const TIMEOUT_MS = 60 * 60 * 1000; // 60 minutes
+  const TIMEOUT_MS = 24 * 60 * 60 * 1000; // 24 hours
   const screensaver = document.getElementById('screensaver');
   const logo = document.getElementById('screensaver-logo');
 
@@ -514,44 +391,10 @@
     document.addEventListener(ev, resetTimer, { passive: true, capture: true });
   });
 
-  // Dismiss screensaver on tap/click
   screensaver.addEventListener('click', resetTimer);
   screensaver.addEventListener('touchstart', resetTimer, { passive: true });
 
   resetTimer();
-
-  // === Session Reset ===
-  function showResetModal() {
-    document.getElementById('resetModal').classList.add('active');
-  }
-
-  function hideResetModal() {
-    document.getElementById('resetModal').classList.remove('active');
-  }
-
-  function confirmReset() {
-    // Clear all browser-level session data
-    try { localStorage.clear(); } catch(e) {}
-    try { sessionStorage.clear(); } catch(e) {}
-    try {
-      document.cookie.split(';').forEach(c => {
-        document.cookie = c.trim().split('=')[0] + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;';
-      });
-    } catch(e) {}
-
-    // Trigger OS-level kiosk reset via companion bat file, then reload this page
-    // reset.bat must be in the same folder as this HTML file, containing:
-    //   rundll32.exe user32.dll,LockWorkStation
-    window.location.href = 'kioskreset://';
-
-    // Reload this page after a short delay as fallback
-    setTimeout(() => { window.location.reload(); }, 1000);
-  }
-
-  // Close modal if overlay background is clicked
-  document.getElementById('resetModal').addEventListener('click', function(e) {
-    if (e.target === this) hideResetModal();
-  });
 </script>
 </body>
 </html>
